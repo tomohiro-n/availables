@@ -20,6 +20,10 @@ export default {
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },
+  typescript: {
+    typeCheck: true,
+    ignoreNotFoundWarnings: true
+  },
   /*
    ** Global CSS
    */
@@ -27,7 +31,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['plugins/firebase'],
   /*
    ** Nuxt.js dev-modules
    */

@@ -8,6 +8,15 @@
         {{ subTitleText }}
       </h2>
     </div>
+    <div>
+      <div v-if="this.$auth.currentUser === null">
+        <firebaseAuth />
+        Hello {{ this.$auth.currentUser.displayName }}
+      </div>
+      <div v-if="this.$auth.currentUser !== null">
+        Hello {{ this.$auth.currentUser.displayName }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,6 +30,9 @@ interface State {
 
 export default Vue.extend({
   layout: 'default',
+  components: {
+    FirebaseAuth: () => import('~/components/FirebaseAuth.vue')
+  },
   data() {
     return {
       titleText: 'availables',
@@ -34,7 +46,6 @@ export default Vue.extend({
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
