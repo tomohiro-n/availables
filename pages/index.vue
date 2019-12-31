@@ -2,16 +2,33 @@
   <div class="container">
     <div>
       <h1 class="title">
-        availables
+        {{ titleText }}
       </h1>
       <h2 class="subtitle">
-        To look for available time slots
+        {{ subTitleText }}
       </h2>
     </div>
   </div>
 </template>
 
-<script></script>
+<script lang="ts">
+import Vue from 'vue'
+
+interface State {
+  titleText: string | null
+  subTitleText: string | null
+}
+
+export default Vue.extend({
+  layout: 'default',
+  data() {
+    return {
+      titleText: 'availables',
+      subTitleText: 'To look for available time slots'
+    } as State
+  }
+})
+</script>
 
 <style>
 .container {
