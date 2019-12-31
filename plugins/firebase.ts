@@ -17,6 +17,10 @@ export default (
   context: Context,
   inject: (key: string, value: any) => void
 ) => {
+  const { store } = context
+  firebase.auth().onAuthStateChanged((user) => {
+    store.dispatch('setUserLoggedIn', user !== null)
+  })
   inject('firebase', firebase)
   inject('auth', firebase.auth())
 }

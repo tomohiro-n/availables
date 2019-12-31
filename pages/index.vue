@@ -9,12 +9,12 @@
       </h2>
     </div>
     <div>
-      <div v-if="this.$auth.currentUser === null">
+      <div v-if="!isUserLoggedIn">
         <firebaseAuth />
-        Hello {{ this.$auth.currentUser.displayName }}
       </div>
-      <div v-if="this.$auth.currentUser !== null">
-        Hello {{ this.$auth.currentUser.displayName }}
+      <div v-if="isUserLoggedIn">
+        Hello {{ this.$auth.currentUser.displayName }}<br />
+        <b-button @click="logout()">Logout</b-button>
       </div>
     </div>
   </div>
@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 
 interface State {
   titleText: string | null
@@ -38,6 +39,17 @@ export default Vue.extend({
       titleText: 'availables',
       subTitleText: 'To look for available time slots'
     } as State
+  },
+  computed: {
+    ...mapGetters({
+      isUserLoggedIn: 'isUserLoggedIn'
+    })
+  },
+  methods: {
+    logout() {
+      this.$auth.signOut()
+      location.reload()
+    }
   }
 })
 </script>
